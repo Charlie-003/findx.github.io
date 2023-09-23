@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find X Game</title>
+    <style>
+        *{
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin: 50px;
+            padding: 30px;
+            background-color: rgb(229, 23, 229);
+            justify-content: center;
+            width: fit-content;
+            height: fit-content;
+            border-radius: 30px;
+
+        }
+        .info{
+            
+            margin: 0px;
+            padding: 10px;
+            background-color: rgb(55, 40, 55);
+            color: white;
+
+        }
+        .input{
+            border: 2px solid black;
+            border-radius: 8px;
+            margin: 8px;
+            font-size: 20px;
+            width: auto;
+            height: 1cm;
+            background-color: #c6acac;
+        }
+
+        #message {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+        .header{
+            width: 100%;
+            height: 6rem;
+            display: flex;
+            align-items: center;
+        }
+        .logo{
+            text-decoration: none;
+            font-size: 50px;
+            font-weight: 700px;
+            color: rgb(229, 23, 229);
+            margin: 30px;
+        }
+        .navbar{
+            width: 100%;
+            display: flex;
+            height: 3rem;
+            background-color: rgb(229, 23, 229);
+            align-items: center;
+            padding-left: 30px;
+        }
+        .navbar li{
+            list-style: none;
+            display: inline-block;
+            padding-right: 20px;
+            position: relative;
+            align-items: center;
+        }
+        .navbar li a{
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+        }
+        .navbar li a:hover{
+            color: rgb(65, 54, 54);
+        }
+
+
+    </style>
+</head>
+<body>
+    <nav class="header">
+        <a href="#" class="logo">FIND X</a>
+    </nav>
+    <nav class="navbar">
+        <ul>
+            <li><a href="#" id="rules">Rules</a></li>
+            <li><a href="#" id="about">About</a></li>
+            <li><a href="#" id="contact">Contacts</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Find X Game</h1>
+        <p>Enter a number between 1 and 100:</p>
+        <input class="input" type="number" id="userGuess" min="1" max="100">
+        <button class="input" onclick="checkGuess()">Check</button>
+        <button class="input" id="refresh" onclick="refresh()">Refresh</button>
+        <p id="message"></p>
+    </div>
+        <div class="info">
+            <div class="rules">
+                <pre>
+                    Rules:<br>- Guess a number and enter it.<br>- Click the the "Guess" button.<br>- The less attempts you use, the more rank you get.
+                </pre>
+            </div>
+            <div class="about">
+                <pre>
+                    This is my first project that i hosted. If you have some feedback please feel free. 
+                    Contact me  -sameershaikh84663@gmail.com<br>- 8421371975
+                </pre>
+            </div>
+        </div>
+
+    <script>
+        // making of a random value of x
+        let x = Math.floor(Math.random()*100)+1;
+        console.log(x);
+        // the attempts that user make 
+        let attempts = 0;
+
+        // rules
+        let rules = document.getElementById("rules");
+        rules.addEventListener("click", function(){
+            alert("Scroll Down!!!")
+})
+        let about = document.getElementById("about");
+        about.addEventListener("click", function(){
+            alert("Scroll Down!!!")
+})
+        let conact = document.getElementById("contact");
+        contact.addEventListener("click", function(){
+            alert("Scroll Down!!!")
+})
+// button for refresh
+const refresh  = document.getElementById("refresh").addEventListener("click",()=>{
+    location.reload();
+})
+        function checkGuess() {
+
+            const userGuess = parseInt(document.getElementById("userGuess").value);
+
+
+            if(isNaN(userGuess)|| userGuess<1 || userGuess>100){
+                document.getElementById("message").innerHTML= "Please Enter a Valid Number";
+            }
+            else{
+                console.log("working");
+                attempts++;
+
+                if(userGuess === x){
+                    console.log("congrats");
+                    document.getElementById("message").innerHTML = `Congrats! You Won The Game With ${attempts} Attempts`;
+                    document.getElementById("userGuess").disabled = true;
+
+                }else if(userGuess < x){
+                    document.getElementById("message").innerHTML = `Increase The Value`;
+
+                    console.log("increase the value");
+
+                }else{
+                    document.getElementById("message").innerHTML = `Decrease The Value`;
+                    console.log("decrease the value");
+                }
+            }
+        }
+    </script>
+</body>
+</html>
